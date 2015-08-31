@@ -15,6 +15,8 @@ for statustext in statustexts:
     markov.update(exmecab.wakati(statustext))
 
 salad = markov.make_salad(50)
+while len(salad) < 10:
+  salad = markov.make_salad(50)
 if len(salad) > 140:
     salad = salad[:139]
 
