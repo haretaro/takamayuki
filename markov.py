@@ -12,7 +12,7 @@ class Markov:
             dic[sequence].append(sentence[i+depth])
         self.dic = dic
 
-    def create(self,limit=100):
+    def make_salad(self,limit=100):
         key = random.choice(list(self.dic.keys()))
         sentence = [word for word in key]
         count = 0
