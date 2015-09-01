@@ -19,7 +19,7 @@ class Markov:
             result += word
         return result
 
-    def update(self,sentence):
+    def learn(self,sentence):
         if isinstance(sentence,str):
             sentence = sentence.rstrip('\n').split(' ')
         for i in range(len(sentence)-self.depth):
@@ -32,6 +32,5 @@ class Markov:
 if __name__ == '__main__':
     ex_sentence = ['それ','が','彼','の','最後','の','言葉','でし','た','。','彼','が','本当に','無神論者','だっ','た','のか','どうか','が','気がかり','です','。',]
     m = Markov(1)
-    m.update(ex_sentence)
-    m.update(ex_sentence)
+    m.learn(ex_sentence)
     print(m.make_salad())
