@@ -6,10 +6,12 @@ class Markov:
         self.depth = depth
         self.dic = {}
 
-    def make_salad(self,limit=100):
-        key = random.choice(list(self.dic.keys()))
-        sentence = [word for word in key]
+    def make_salad(self,limit=100,start_words=None):
+        if(start_words is None):
+            start_words = random.choice(list(self.dic.keys()))
+        sentence = [word for word in start_words]
         count = 0
+        key = start_words
         while key in self.dic and count < limit:
             sentence.append(random.choice(self.dic[key]))
             key = tuple(sentence[-self.depth:])
@@ -31,6 +33,8 @@ class Markov:
 
 if __name__ == '__main__':
     ex_sentence = ['それ','が','彼','の','最後','の','言葉','でし','た','。','彼','が','本当に','無神論者','だっ','た','のか','どうか','が','気がかり','です','。',]
-    m = Markov(1)
+    m = Markov(2)
     m.learn(ex_sentence)
-    print(m.make_salad())
+    print(m.dic)
+    print(m.make_salad(start_words=('それ','が')))
+    print(m.make_salad(start_words=('最後','の')))
