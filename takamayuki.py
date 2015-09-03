@@ -21,7 +21,7 @@ print('hashtag? = ' + hashtag)
 statustexts = twitter.search_statustexts(trend,300)
 statustexts = [re.sub(r'RT.+:','',statustext) for statustext in statustexts]
 statustexts = [re.sub(hashtag,'',statustext) for statustext in statustexts]
-statustexts = [re.sub(r'http.+(\n|\Z)','',statustext) for statustext in statustexts]
+statustexts = [re.sub(r'http.+\Z','',statustext) for statustext in statustexts]
 print(statustexts)
 
 markov = Markov(2)
@@ -40,4 +40,4 @@ if len(salad) > maxlen:
 salad += ' ' + hashtag
 print(salad)
 print('len = ' + str(len(salad)))
-#twitter.tweet(salad)
+twitter.tweet(salad)
