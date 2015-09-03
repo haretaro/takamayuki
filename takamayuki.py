@@ -35,11 +35,11 @@ salad = markov.make_salad(50,start_words)
 while len(salad) < 20:
     salad = markov.make_salad(50,start_words)
 
-maxlen = 140 - len(hashtag)
+maxlen = 139 - len(hashtag)
 if len(salad) > maxlen:
     salad = salad[:maxlen-1]
 
-salad += hashtag
+salad += ' ' + hashtag
 print(salad)
 print('len = ' + str(len(salad)))
-twitter.tweet(salad)
+#twitter.tweet(salad)

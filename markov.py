@@ -13,6 +13,7 @@ class Markov:
         count = 0
         key = start_words
         while key in self.dic and count < limit:
+            print(str(count)+',',end='')
             sentence.append(random.choice(self.dic[key]))
             key = tuple(sentence[-self.depth:])
             count += 1
