@@ -10,10 +10,19 @@ os.chdir(os.path.dirname(__file__))
 twitter = TwitterApi.load_json_file('keys.json')
 
 trend = random.choice(twitter.trendwords())
-statustexts = twitter.search_statustexts(trend,300)
+print('trend = ' + trend)
 
+hashtag = ''
+hashtagmatch = re.match(r'#.+',trend)
+if hashtagmatch is not None:
+    hashtag = trend
+print('hashtag? = ' + hashtag)
+
+statustexts = twitter.search_statustexts(trend,300)
 statustexts = [re.sub(r'RT.+:','',statustext) for statustext in statustexts]
+statustexts = [re.sub(hashtag,'',statustext) for statustext in statustexts]
 statustexts = [re.sub(r'http.+(\n|\Z)','',statustext) for statustext in statustexts]
+print(statustexts)
 
 markov = Markov(2)
 for statustext in statustexts:
@@ -24,12 +33,13 @@ start_words = tuple(a_sentence[:2])
 
 salad = markov.make_salad(50,start_words)
 while len(salad) < 20:
-  salad = markov.make_salad(50,start_words)
-if len(salad) > 140:
-    salad = salad[:139]
+    salad = markov.make_salad(50,start_words)
 
-print(statustexts)
+maxlen = 140 - len(hashtag)
+if len(salad) > maxlen:
+    salad = salad[:maxlen-1]
+
+salad += hashtag
 print(salad)
 print('len = ' + str(len(salad)))
-print('trend = ' + trend)
 twitter.tweet(salad)
