@@ -19,9 +19,9 @@ if hashtagmatch is not None:
 print('hashtag? = ' + hashtag)
 
 statustexts = twitter.search_statustexts(trend,300)
-statustexts = [re.sub(r'RT.+:','',statustext) for statustext in statustexts]
 statustexts = [re.sub(hashtag,'',statustext) for statustext in statustexts]
 statustexts = [re.sub(r'http.+(\n|\Z)','',statustext) for statustext in statustexts]
+statustexts = [re.sub(r'RT.+:','',statustext) for statustext in statustexts]
 print(statustexts)
 
 markov = Markov(2)
