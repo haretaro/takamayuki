@@ -37,7 +37,7 @@ maxlen = 139 - len(hashtag)
 if len(salad) > maxlen:
     salad = salad[:maxlen-1]
 
-salad += ' ' + hashtag
+salad += '\n' + hashtag
 print(salad)
 print('len = ' + str(len(salad)))
 twitter.tweet(salad)
