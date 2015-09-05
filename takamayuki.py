@@ -19,9 +19,9 @@ if hashtagmatch is not None:
 print('hashtag? = ' + hashtag)
 
 statustexts = twitter.search_statustexts(trend,300)
-statustexts = [re.sub(r'RT.+:','',statustext) for statustext in statustexts]
 statustexts = [re.sub(hashtag,'',statustext) for statustext in statustexts]
 statustexts = [re.sub(r'http.+(\n|\Z)','',statustext) for statustext in statustexts]
+statustexts = [re.sub(r'RT.+:','',statustext) for statustext in statustexts]
 print(statustexts)
 
 markov = Markov(2)
@@ -37,7 +37,7 @@ maxlen = 139 - len(hashtag)
 if len(salad) > maxlen:
     salad = salad[:maxlen-1]
 
-salad += ' ' + hashtag
+salad += '\n' + hashtag
 print(salad)
 print('len = ' + str(len(salad)))
 twitter.tweet(salad)
