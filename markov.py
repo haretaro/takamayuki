@@ -2,8 +2,9 @@ import random
 
 class Markov:
     
-    def __init__(self,depth):
-        self.depth = depth
+    def __init__(self,order):
+        """order: マルコフ連鎖の階数"""
+        self.order = order
         self.dic = {}
 
     def make_salad(self,limit=100,start_words=None):
@@ -15,7 +16,7 @@ class Markov:
         while key in self.dic and count < limit:
             print(str(count)+',',end='')
             sentence.append(random.choice(self.dic[key]))
-            key = tuple(sentence[-self.depth:])
+            key = tuple(sentence[-self.order:])
             count += 1
         result = ''
         for word in sentence:
@@ -25,11 +26,11 @@ class Markov:
     def learn(self,sentence):
         if isinstance(sentence,str):
             sentence = sentence.rstrip('\n').split(' ')
-        for i in range(len(sentence)-self.depth):
-            sequence = tuple(sentence[i:i+self.depth])
+        for i in range(len(sentence)-self.order):
+            sequence = tuple(sentence[i:i+self.order])
             if sequence not in self.dic:
                 self.dic[sequence] = []
-            self.dic[sequence].append(sentence[i+self.depth])
+            self.dic[sequence].append(sentence[i+self.order])
 
 
 if __name__ == '__main__':
