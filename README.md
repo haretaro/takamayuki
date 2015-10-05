@@ -1,2 +1,2 @@
 # 高間YU☆KI
-こいつ→https://twitter.com/ZQpBsJGMIM5OdVE の中身
+こいつ→https://twitter.com/takamayukibot の中身
