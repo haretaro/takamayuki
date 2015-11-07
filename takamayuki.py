@@ -5,6 +5,7 @@ from twihoge import TwitterApi
 from markov import Markov
 import os
 import re
+import escape
 
 os.chdir(os.path.dirname(__file__))
 twitter = TwitterApi.load_json_file('keys.json')
@@ -22,6 +23,7 @@ statustexts = twitter.search_statustexts(trend,300)
 statustexts = [re.sub(hashtag,'',statustext) for statustext in statustexts]
 statustexts = [re.sub(r'http.+(\n|\Z)','',statustext) for statustext in statustexts]
 statustexts = [re.sub(r'RT.+:','',statustext) for statustext in statustexts]
+statustexts = [escape.decode(statustext) for statustext in statustexts]
 print(statustexts)
 
 markov = Markov(2)
