@@ -1,9 +1,10 @@
 import random
 
+#マルコフ連鎖クラス
 class Markov:
     
+    #order: マルコフ連鎖の階数
     def __init__(self,order):
-        """order: マルコフ連鎖の階数"""
         self.order = order
         self.dic = {}
 
